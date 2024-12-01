@@ -1,0 +1,76 @@
+body {
+    margin: 0; /* Remove default body margin */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.package-container {
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding is included in total width/height */
+    overflow-x: hidden; /* Remove horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling if necessary */
+    max-width: 100%; /* Ensure it doesn't exceed the screen width */
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 8px; /* Reduced space between cards */
+    justify-items: center; /* Center cards within the grid */
+    margin-top: 15px; /* Slightly reduced margin between title and grid */
+}
+
+.package-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px; /* Reduced padding inside the card */
+    width: 280px; /* Fixed card width */
+    height: 300px; /* Reduced card height */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Includes padding within the width */
+    display: flex; /* Ensures consistent alignment of content */
+    flex-direction: column;
+    justify-content: space-between; /* Distribute content evenly inside the card */
+}
+
+.package-card h2 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 1.2rem; /* Reduced font size for heading */
+}
+
+.package-card p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9rem; /* Reduced font size for paragraphs */
+}
+
+.package-card ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.package-card li {
+    margin: 3px 0; /* Reduced spacing between list items */
+    color: #555;
+    font-size: 0.9rem; /* Reduced font size for list items */
+}
+
+/* Optional Responsive Adjustments */
+@media (max-width: 768px) {
+    .package-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .package-grid {
+        grid-template-columns: 1fr; /* 1 card per row on very small screens */
+    }
+}

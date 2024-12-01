@@ -1,0 +1,78 @@
+/* VenuePage.css */
+.venue-page-container {
+    padding: 40px;
+    text-align: center;
+    margin-top: 80px;  /* Add margin-top to give space for the navbar */
+}
+
+.venue-page-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.venue-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.venue-card {
+    width: 60%; /* Reduced the width of the card */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.venue-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.venue-guests {
+    font-size: 1rem;
+    color: gray;
+}
+
+.more-details-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.more-details-button:hover {
+    background-color: #0056b3;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+}
+
+.venue-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.card-text {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+    

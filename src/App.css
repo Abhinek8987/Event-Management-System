@@ -1,0 +1,55 @@
+
+/* Navbar Styling */
+.navbar {
+  background-color: #333;
+  padding: 10px 20px; /* Adjust padding as needed */
+  width: 100vw;  /* Full width of the viewport */
+  position: relative;  /* Ensure it's not sticky */
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;  /* Ensure no margin is causing the navbar to shrink */
+  box-sizing: border-box;  /* Include padding in the width calculation */
+}
+
+.navbar-logo .logo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #fff;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  background-color: #f4a261;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.navbar-contact {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-contact a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.navbar-contact a:hover {
+  text-decoration: underline;
+}

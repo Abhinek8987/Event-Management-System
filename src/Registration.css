@@ -1,0 +1,156 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Registration Container */
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Beautiful gradient background */
+    color: #fff;
+    padding: 0;
+    position: absolute; /* Ensure it takes up the full viewport */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width of the viewport */
+    background-size: cover; /* Ensures background covers entire page */
+}
+
+/* Title */
+h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+h2:hover {
+    transform: scale(1.1);
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slight white background with transparency */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); /* Blurry background effect */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Modern Input Field */
+form input {
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.2); /* Slight transparent white */
+    color: #fff;
+    font-size: 16px;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+form input::placeholder {
+    color: #bbb; /* Light placeholder color for better readability */
+    opacity: 1; /* Ensures placeholder text remains visible */
+}
+
+form input:focus {
+    outline: none;
+    border: 1px solid #2575fc; /* Blue border on focus */
+    background: rgba(255, 255, 255, 0.3); /* Slightly lighter background on focus */
+}
+
+form input:focus::placeholder {
+    color: #2575fc; /* Change placeholder color to blue when focused */
+}
+
+/* Button Styling */
+form button {
+    padding: 12px;
+    background-color: #2575fc;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #6a11cb; /* Darker blue on hover */
+}
+
+/* Error Message Styling */
+form .error-message {
+    color: #ff9800; /* Changed text color to a dark orange */
+    font-size: 16px; /* Increased font size for better readability */
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(255, 152, 0, 0.1); /* Light orange background with transparent effect */
+    border-radius: 5px;
+    text-align: center; /* Center-align error message */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Slight shadow for better emphasis */
+}
+
+/* Toggle Links */
+.toggle-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.toggle-link span {
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.toggle-link span:hover {
+    color: #2575fc; /* Change to blue when hovered */
+}
+
+/* Google Sign-In/Sign-Up Button */
+.google-signin button {
+    padding: 12px;
+    background-color: #db4437; /* Google Red */
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.google-signin button:hover {
+    background-color: #c1351d; /* Slightly darker red when hovered */
+}
+
+/* Reset Password and Forgot Password Text */
+.reset-password-text, .forgot-password-text {
+    font-size: 22px; /* Same font size */
+    font-weight: bold; /* Optional: makes the text bold */
+    cursor: pointer; /* Makes it look clickable */
+    color: #fff; /* Keeps the text color white */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.reset-password-text:hover, .forgot-password-text:hover {
+    color: #2575fc; /* Change text color on hover */
+}

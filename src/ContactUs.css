@@ -1,0 +1,199 @@
+/* General Contact Form Styling */
+.contact-us {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    opacity: 0.9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+.contact-us form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-us form div {
+    margin-bottom: 10px;
+}
+
+.contact-us label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.contact-us input[type="text"],
+.contact-us input[type="email"],
+.contact-us textarea {
+    width: 95%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.contact-us input[type="text"]:focus,
+.contact-us input[type="email"]:focus,
+.contact-us textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.contact-us textarea {
+    height: 100px;
+    resize: none;
+}
+
+.contact-us button {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-us button:hover {
+    background-color: #0056b3;
+}
+
+.contact-us button:active {
+    background-color: #004085;
+}
+
+/* Thank You Message Styling */
+.thank-you-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.thank-you-message h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.thank-you-message p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.back-to-home {
+    text-decoration: none;
+    color: white;
+    background-color: #3498db;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: #2980b9;
+}
+
+/* Contact Page Styling */
+.contact-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-image: url('/src/image6.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Form container */
+.contact-form-container {
+    flex: 1;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 25px;
+}
+
+/* Address container */
+.contact-details-container {
+    flex: 1;
+    padding: 10px;
+    margin: 20px;
+    color: #fff;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.5); /* Adding a semi-transparent background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+}
+
+/* Address and contact details styling */
+.contact-details h2 {
+    font-size: 22px; /* Slightly larger for emphasis */
+    margin-bottom: 15px;
+    text-align: center; /* Centering the title */
+}
+
+.contact-details p {
+    font-size: 16px;
+    line-height: 1.6; /* Improved line height for readability */
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+
+/* Adding icons for better visual appeal */
+.contact-details p::before {
+    content: '📍'; /* Location icon */
+    margin-right: 5px;
+}
+
+.contact-details p:nth-of-type(3)::before {
+    content: '✉️'; /* Email icon */
+}
+
+.contact-details p:nth-of-type(4)::before {
+    content: '📞'; /* Phone icon */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .contact-page {
+        flex-direction: column;
+    }
+    .contact-form-container,
+    .contact-details-container {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .contact-us h2 {
+        font-size: 18px;
+    }
+
+    .contact-us button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+.contact-us input::placeholder,
+.contact-us textarea::placeholder {
+    color: #888; /* Change this color to whatever you prefer */
+    opacity: 1; /* Ensures the placeholder is fully opaque */
+    /* font-size: 15px; */
+}

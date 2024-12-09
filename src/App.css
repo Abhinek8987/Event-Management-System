@@ -1,16 +1,16 @@
-
 /* Navbar Styling */
 .navbar {
   background-color: #333;
-  padding: 10px 20px; /* Adjust padding as needed */
-  width: 100vw;  /* Full width of the viewport */
-  position: relative;  /* Ensure it's not sticky */
+  padding: 10px 20px;
+  width: 100vw;
+  position: relative;
   z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0;  /* Ensure no margin is causing the navbar to shrink */
-  box-sizing: border-box;  /* Include padding in the width calculation */
+  margin: 0;
+  box-sizing: border-box;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .navbar-logo .logo-text {
@@ -52,4 +52,126 @@
 
 .navbar-contact a:hover {
   text-decoration: underline;
+}
+
+/* User Account Buttons */
+.user-account {
+  display: flex;
+  gap: 15px;
+}
+
+.user-account button {
+  padding: 5px 15px;
+  font-size: 1rem;
+  background-color: #f4a261;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.user-account button:hover {
+  background-color: #e07b3b;
+}
+
+.logout-button:hover {
+  background-color: #e60000;
+  transition: 0.3s ease-in-out;
+}
+
+/* Modal for Account Details */
+.account-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-content ul li {
+  margin-bottom: 10px;
+}
+
+.modal-content button {
+  display: inline-block;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navbar-contact {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar-contact a {
+    font-size: 1.2rem;
+  }
+
+  .user-account {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar-logo .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .navbar-links li a {
+    font-size: 1.1rem;
+    padding: 8px 12px;
+  }
+
+  .navbar-contact a {
+    font-size: 1.1rem;
+  }
+
+  .my-account-button, .logout-button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo .logo-text {
+    font-size: 1.2rem;
+  }
+
+  .navbar-links li a {
+    font-size: 1rem;
+  }
+
+  .navbar-contact a {
+    font-size: 1rem;
+  }
+
+  .my-account-button, .logout-button {
+    font-size: 1rem;
+  }
 }

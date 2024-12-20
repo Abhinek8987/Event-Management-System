@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ContactUs.css'; // Import the CSS file
+import './ContactUs.css'; // Ensure this file exists
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -9,38 +9,35 @@ const ContactUs = () => {
     message: ''
   });
 
-  const [submitted, setSubmitted] = useState(false); // Track form submission
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send form data to Formspree
-    const form = e.target;
-    const formData = new FormData(form);
-
-    fetch('https://formspree.io/f/xanwgkgq', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          setSubmitted(true);
-        } else {
-          alert('There was a problem submitting your form. Please try again.');
-        }
-      })
-      .catch(() => {
-        alert('Error sending the message. Please try again.');
+    try {
+      const response = await fetch('http://localhost:5000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert(data.message || 'Failed to submit the form.');
+      }
+    } catch (error) {
+      alert('Error submitting the form. Please try again.');
+    }
   };
 
-  // If form is submitted, show the "Thank You" message
   if (submitted) {
     return (
       <div className="thank-you-container">
@@ -53,10 +50,8 @@ const ContactUs = () => {
     );
   }
 
-  // Render contact form and address details side by side
   return (
     <div className="contact-page">
-      {/* Contact form */}
       <div className="contact-form-container">
         <div className="contact-us">
           <h2>Contact Us</h2>
@@ -108,8 +103,6 @@ const ContactUs = () => {
           </form>
         </div>
       </div>
-
-      {/* Address details */}
       <div className="contact-details-container">
         <div className="contact-details">
           <h2>Our Address</h2>

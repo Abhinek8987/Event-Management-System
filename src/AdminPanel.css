@@ -368,3 +368,120 @@
     justify-content: center;
     align-items: center;
 }
+
+
+
+
+
+
+
+/* Form Inputs */
+.venue-form-container input,
+.venue-form-container textarea {
+
+    width: 70%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.venue-form-container input:focus,
+.venue-form-container textarea:focus {
+    border-color: #3498db;
+}
+
+.venue-form-container textarea {
+    resize: none;
+    height: 100px;
+}
+
+
+
+
+
+/* AdminPanel.css */
+
+input.form-control, 
+textarea.form-control {
+    width: 300%; /* Ensures the fields take full width of their parent container */
+    max-width: 600px; /* Set a maximum width for larger screens */
+    margin: 0 auto; /* Centers the input fields */
+    font-size: 1rem; /* Adjust the font size */
+    padding: 10px; /* Add padding for better aesthetics */
+    border: 1px solid #ced4da; /* Matches Bootstrap border style */
+    border-radius: 5px; /* Smooth rounded corners */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern look */
+}
+
+button.btn {
+    margin-top: 10px;
+}
+
+textarea.form-control {
+    resize: vertical; /* Allows vertical resizing only */
+}
+
+
+.venue-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.venue-form-container, .venue-list-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.venue-list-container {
+    margin-left: 20px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.modal-header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal button {
+    margin-top: 10px;
+}

@@ -1,77 +1,169 @@
-/* VenuePage.css */
+/* Page Container */
 .venue-page-container {
-    padding: 40px;
-    text-align: center;
-    margin-top: 80px;  /* Add margin-top to give space for the navbar */
+  padding: 40px;
+  text-align: center;
+  margin-top: 80px;
+  background: url('/images/star-heart-bg.jpg') center/cover no-repeat fixed;
 }
 
 .venue-page-title {
-    font-size: 2rem;
-    margin-bottom: 30px;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
 }
 
+/* Toggle Buttons */
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.toggle-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: #e6e6e6;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.toggle-button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+/* Venue Cards Container */
 .venue-cards-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
+.grid-view {
+  flex-direction: row;
+}
+
+.list-view {
+  flex-direction: column;
+}
+
+/* Venue Card */
 .venue-card {
-    width: 60%; /* Reduced the width of the card */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 320px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.venue-title {
-    font-size: 1.5rem;
-    font-weight: bold;
+.list-view .venue-card {
+  width: 80%;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: 20px;
 }
 
-.venue-guests {
-    font-size: 1rem;
-    color: gray;
-}
-
-.more-details-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.more-details-button:hover {
-    background-color: #0056b3;
-}
-
-.card-content {
-    display: flex;
-    align-items: center;
+.venue-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 .venue-image {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 20px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
+.list-view .venue-image {
+  width: 180px;
+  height: 180px;
+}
+
+/* Card Text */
 .card-text {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.venue-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.venue-rating {
+  color: #ff3366;
+  font-weight: bold;
+}
+
+.venue-description,
+.venue-guests,
+.venue-rental,
+.venue-rooms {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+
+
+
+
+
+
+
+
+/* Modern Aesthetic Styling */
+.venue-page-container {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.venue-page-title {
+  text-align: center;
+  font-size: 2.5em;
+  color: #4a90e2;
+  margin-bottom: 10px;
+}
+
+.selected-event {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #4a90e2, #a3d8f4);
+  color: white;
+  font-size: 1.2em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.selected-event span {
+  font-weight: bold;
 }

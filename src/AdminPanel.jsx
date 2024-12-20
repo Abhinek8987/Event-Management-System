@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import { db } from './firebase'; // Firebase Firestore functions
 import {
     collection,
@@ -6,8 +7,10 @@ import {
     deleteDoc,
     doc,
     onSnapshot,
+    setDoc,
+    addDoc
 } from 'firebase/firestore';
-import { getAuth, updateEmail } from 'firebase/auth';
+import { getAuth, updateEmail, signOut } from 'firebase/auth';
 import { Bar, Pie } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -17,7 +20,7 @@ import {
     Title,
     Tooltip,
     Legend,
-    ArcElement,
+    ArcElement
 } from 'chart.js';
 import './AdminPanel.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -50,6 +53,12 @@ const SideNavbar = ({ onMenuSelect, activeMenu }) => (
                 Manage Users
             </li>
             <li
+                className={activeMenu === 'venue' ? 'active' : ''}
+                onClick={() => onMenuSelect('venue')}
+            >
+                Venue
+            </li>
+            <li
                 className={activeMenu === 'settings' ? 'active' : ''}
                 onClick={() => onMenuSelect('settings')}
             >
@@ -71,11 +80,20 @@ const AdminPanel = ({ userDetails }) => {
     const [updatedName, setUpdatedName] = useState('');
     const [updatedEmail, setUpdatedEmail] = useState('');
     const [updatedPhone, setUpdatedPhone] = useState('');
+    const [venueTitle, setVenueTitle] = useState('');
+    const [venueDescription, setVenueDescription] = useState('');
+    const [venueRent, setVenueRent] = useState('');
+    const [venueLocation, setVenueLocation] = useState('');
+    const [venueImage, setVenueImage] = useState('');
+    const [minGuests, setMinGuests] = useState('');
+    const [rooms, setRooms] = useState('');
     const [adminCount, setAdminCount] = useState(0);
     const [userCount, setUserCount] = useState(0);
     const [activeMenu, setActiveMenu] = useState('users');
 
     const auth = getAuth();
+    const [venues, setVenues] = useState([]);
+
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'users'), (querySnapshot) => {
@@ -98,13 +116,25 @@ const AdminPanel = ({ userDetails }) => {
             setUserCount(regularUsers);
         });
 
-        return () => unsubscribe();
+        const unsubscribeVenues = onSnapshot(collection(db, 'venues'), (querySnapshot) => {
+            const venueList = [];
+            querySnapshot.forEach((doc) => {
+                const venueData = { ...doc.data(), id: doc.id };
+                venueList.push(venueData);
+            });
+            setVenues(venueList);
+        });
+
+        return () => {
+            unsubscribe();
+            unsubscribeVenues();
+        };
     }, []);
+
     const handleLogout = async () => {
         try {
-            await signOut(auth); // Log out the user
+            await signOut(auth);
             toast.success('Logged out successfully!');
-            if (onLogout) onLogout(); // Optional callback to handle navigation
         } catch (error) {
             toast.error('Failed to log out. Please try again.');
         }
@@ -156,31 +186,65 @@ const AdminPanel = ({ userDetails }) => {
         }
     };
 
+    const createVenue = async () => {
+        if (!venueTitle || !venueDescription || !venueRent || !venueLocation || !venueImage || !minGuests || !rooms) {
+            toast.error('All fields are required!');
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, 'venues'), {
+                title: venueTitle,
+                description: venueDescription,
+                rent: venueRent,
+                location: venueLocation,
+                image: venueImage,
+                minGuests: parseInt(minGuests, 10),
+                rooms: parseInt(rooms, 10),
+                createdAt: new Date(),
+            });
+
+            toast.success('Venue created successfully!');
+            setVenueTitle('');
+            setVenueDescription('');
+            setVenueRent('');
+            setVenueLocation('');
+            setVenueImage('');
+            setMinGuests('');
+            setRooms('');
+        } catch (error) {
+            toast.error('Failed to create venue. Please try again.');
+        }
+    };
+
+    const deleteVenue = async (venueId) => {
+        const isConfirmed = window.confirm('Are you sure you want to delete this venue?');
+        if (isConfirmed) {
+            try {
+                await deleteDoc(doc(db, 'venues', venueId));
+                toast.success('Venue deleted successfully!');
+            } catch (error) {
+                toast.error('Failed to delete venue.');
+            }
+        }
+    };
+
     // Bar Chart (User Distribution by Role)
     const chartOptionsBar = {
         responsive: true,
-        animations: {
-            tension: {
-                duration: 1000,
-                easing: 'easeInOutQuad',
-                from: 1,
-                to: 0,
-                loop: true,
-            },
-        },
         plugins: {
             title: {
                 display: true,
                 text: 'User Distribution by Role',
                 font: {
-                    size: 18, // Increase font size for title
+                    size: 18,
                 },
             },
             legend: {
                 position: 'top',
                 labels: {
                     font: {
-                        size: 14, // Increase font size for legend labels
+                        size: 14,
                     },
                 },
             },
@@ -191,7 +255,7 @@ const AdminPanel = ({ userDetails }) => {
                     display: true,
                     text: 'Roles',
                     font: {
-                        size: 16, // Increase font size for X-axis title
+                        size: 16,
                     },
                 },
             },
@@ -200,14 +264,14 @@ const AdminPanel = ({ userDetails }) => {
                     display: true,
                     text: 'User Count',
                     font: {
-                        size: 16, // Increase font size for Y-axis title
+                        size: 16,
                     },
                 },
                 ticks: {
                     beginAtZero: true,
-                    stepSize: 1, // Prevent decimals
+                    stepSize: 1,
                     font: {
-                        size: 14, // Increase font size for Y-axis labels
+                        size: 14,
                     },
                 },
             },
@@ -220,7 +284,7 @@ const AdminPanel = ({ userDetails }) => {
             {
                 label: 'User Count',
                 data: [adminCount, userCount],
-                backgroundColor: ['#8e44ad', '#3498db'], // Custom color scheme
+                backgroundColor: ['#8e44ad', '#3498db'],
                 borderColor: ['#8e44ad', '#3498db'],
                 borderWidth: 1,
             },
@@ -235,15 +299,7 @@ const AdminPanel = ({ userDetails }) => {
                 display: true,
                 text: 'Role Distribution',
                 font: {
-                    size: 18, // Increase font size for title
-                },
-            },
-            tooltip: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        const percentage = tooltipItem.raw;
-                        return `${tooltipItem.label}: ${percentage}%`;
-                    },
+                    size: 18,
                 },
             },
         },
@@ -262,10 +318,7 @@ const AdminPanel = ({ userDetails }) => {
 
     return (
         <div className="admin-panel-container">
-            <SideNavbar
-                onMenuSelect={setActiveMenu}
-                activeMenu={activeMenu}
-            />
+            <SideNavbar onMenuSelect={setActiveMenu} activeMenu={activeMenu} />
             <div className="admin-panel-content">
                 <h2 className="welcome-message">Welcome, {userDetails?.name || 'Admin'}!</h2>
                 {activeMenu === 'dashboard' && (
@@ -335,7 +388,7 @@ const AdminPanel = ({ userDetails }) => {
                         </div>
                         {selectedUser && (
                             <div className="update-user-form">
-                                <h4>Update User Details</h4>
+                                <h3>Update User Details</h3>
                                 <input
                                     type="text"
                                     placeholder="Name"
@@ -350,16 +403,76 @@ const AdminPanel = ({ userDetails }) => {
                                 />
                                 <input
                                     type="text"
-                                    placeholder="Phone (optional)"
+                                    placeholder="Phone"
                                     value={updatedPhone}
                                     onChange={(e) => setUpdatedPhone(e.target.value)}
                                 />
                                 <button onClick={updateUserDetails}>Update User</button>
+                                <button onClick={() => setSelectedUser(null)}>Cancel</button>
                             </div>
                         )}
                     </div>
                 )}
-                <ToastContainer />
+                {activeMenu === 'venue' && (
+                    <div className="venue-form-container">
+                        <h2>Create Venue</h2>
+                        <input
+                            type="text"
+                            placeholder="Venue Title"
+                            className="form-control mb-3"
+                            value={venueTitle}
+                            onChange={(e) => setVenueTitle(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Venue Description"
+                            className="form-control mb-3"
+                            value={venueDescription}
+                            onChange={(e) => setVenueDescription(e.target.value)}
+                        />
+                        <input
+                        type="number"
+                        placeholder="Minimum Guests"
+                        className="form-control mb-3"
+                        value={minGuests}
+                        onChange={(e) => setMinGuests(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Number of Rooms"
+                        className="form-control mb-3"
+                        value={rooms}
+                        onChange={(e) => setRooms(e.target.value)}
+                    />
+                        <input
+                            type="number"
+                            placeholder="Rent"
+                            className="form-control mb-3"
+                            value={venueRent}
+                            onChange={(e) => setVenueRent(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Location"
+                            className="form-control mb-3"
+                            value={venueLocation}
+                            onChange={(e) => setVenueLocation(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Image URL"
+                            className="form-control mb-3"
+                            value={venueImage}
+                            onChange={(e) => setVenueImage(e.target.value)}
+                        />
+                        <button className="btn btn-primary mb-4" onClick={createVenue}>
+            Create Venue
+        </button>
+                        
+
+        
+                    </div>
+                )}
+                <ToastContainer position="top-right" autoClose={5000} />
             </div>
         </div>
     );

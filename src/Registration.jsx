@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // Import useState and useEffect
 import { useNavigate } from 'react-router-dom';
+import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import {
     auth,
     createUserWithEmailAndPassword,

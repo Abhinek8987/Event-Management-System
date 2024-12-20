@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import React from 'react';
 import './Card.css';  // Assuming you are using this file for styling
 
@@ -20,6 +22,12 @@ const packages = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (title) => {
+    navigate('/venue', { state: { selectedEvent: title } });
+  };
+
   return (
     <div className="dashboard-container">
 
@@ -28,7 +36,8 @@ const Dashboard = () => {
       {/* Event Cards Section */}
       <div className="horizontal-cards-container">
         {eventCards.map((card, index) => (
-          <div className="card" key={index}>
+          <div className="card" key={index}
+          onClick={() => handleCardClick(card.title)}>
             <img src={card.image} alt={card.title} className="card-image" />
             <div className="card-content">
               <h2 className="card-title">{card.title}</h2>

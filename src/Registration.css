@@ -1,4 +1,5 @@
 /* General Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -154,3 +155,5 @@ form .error-message {
 .reset-password-text:hover, .forgot-password-text:hover {
     color: #2575fc; /* Change text color on hover */
 }
+
+

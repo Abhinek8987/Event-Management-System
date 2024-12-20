@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Registration from './Registration';
 import ResetPassword from './ResetPassword';
@@ -6,6 +6,8 @@ import Dashboard from './Dashboard';
 import AdminPanel from './AdminPanel'; // Admin Panel to manage users
 import VenuePage from './VenuePage';
 import PackagePage from './PackagePage';
+import ContactUs from './ContactUs'; // Import the ContactUs component
+
 import './App.css';
 
 const App = () => {
@@ -21,6 +23,26 @@ const App = () => {
         setIsAuthenticated(false);
         setUserDetails(null); // Clear user details on logout
     };
+
+    // To persist the authentication state on refresh
+    useEffect(() => {
+        const storedAuth = localStorage.getItem('isAuthenticated');
+        const storedUser = localStorage.getItem('userDetails');
+        if (storedAuth && storedUser) {
+            setIsAuthenticated(true);
+            setUserDetails(JSON.parse(storedUser));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            localStorage.setItem('isAuthenticated', true);
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+        } else {
+            localStorage.removeItem('isAuthenticated');
+            localStorage.removeItem('userDetails');
+        }
+    }, [isAuthenticated, userDetails]);
 
     return (
         <Router>
@@ -43,38 +65,18 @@ const Navbar = ({ isAuthenticated, handleLogout, toggleAccountDetails }) => (
             <li><Link to="/dashboard">Home</Link></li>
             <li><Link to="/venue">Venue</Link></li>
             <li><Link to="/packages">Package</Link></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><Link to="/contact">Contact</Link></li> {/* Updated Link */}
         </ul>
         <div className="navbar-contact">
             <button
                 className="my-account-button"
                 onClick={toggleAccountDetails}
-                style={{
-                    marginLeft: '20px',
-                    padding: '8px 12px',
-                    backgroundColor: '#007bff',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                }}
             >
                 My Account
             </button>
             <button
                 className="logout-button"
                 onClick={handleLogout}
-                style={{
-                    marginLeft: '10px',
-                    padding: '8px 12px',
-                    backgroundColor: '#ff4d4d',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                }}
             >
                 Logout
             </button>
@@ -122,15 +124,6 @@ const AppRoutes = ({ isAuthenticated, userDetails, handleLogin, handleLogout }) 
                         )}
                         <button
                             onClick={toggleAccountDetails}
-                            style={{
-                                marginTop: '20px',
-                                padding: '8px 12px',
-                                backgroundColor: '#007bff',
-                                color: '#fff',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer',
-                            }}
                         >
                             Close
                         </button>
@@ -149,6 +142,8 @@ const AppRoutes = ({ isAuthenticated, userDetails, handleLogin, handleLogout }) 
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/venue" element={<VenuePage />} />
                 <Route path="/packages" element={<PackagePage />} />
+                <Route path="/contact" element={<ContactUs />} />
+
                 {userDetails?.isAdmin && (
                     <Route path="/admin" element={<AdminPanel userDetails={userDetails} />} /> // Admin-specific route
                 )}

@@ -1,8 +1,16 @@
-# React + Vite
+# 📌 Event Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Event Management System is a web-based application that simplifies the process of organizing and managing events. It provides event organizers with tools to create, manage, and track events while allowing participants to register and stay updated in real time.
 
-Currently, two official plugins are available:
+# 🛠 Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend: HTML, CSS, JavaScript
+Database: MongoDB
+Build Tools: Vite, npm
+
+# ✨ Features
+
+✅ Event Creation & Management – Organizers can create and manage events easily.
+✅ User Registration & Participation – Attendees can register and track event details.
+✅ Admin Dashboard – Manage events, users, and registrations seamlessly.
+

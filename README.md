@@ -4,13 +4,13 @@ The Event Management System is a web-based application that simplifies the proce
 
 # 🛠 Technologies Used
 
-Frontend: HTML, CSS, JavaScript
-Database: MongoDB
-Build Tools: Vite, npm
+- **Frontend**: HTML, CSS, JavaScript
+- **Database**: MongoDB
+- **Build Tools**: Vite, npm
 
 # ✨ Features
 
-✅ Event Creation & Management – Organizers can create and manage events easily.
-✅ User Registration & Participation – Attendees can register and track event details.
-✅ Admin Dashboard – Manage events, users, and registrations seamlessly.
+✅ **Event Creation & Management** – Organizers can create and manage events easily  
+✅ **User Registration & Participation** – Attendees can register and track event details  
+✅ **Admin Dashboard** – Manage events, users, and registrations seamlessly  
 
